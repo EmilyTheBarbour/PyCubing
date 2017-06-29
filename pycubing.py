@@ -1,9 +1,20 @@
 from puzzle import Puzzle, Puzzles
 import jsonpickle
 
-puzzles = Puzzles()
+# # puzzles = Puzzles()
+# # puzzles.list.append(Puzzle("3x3"))
+# # puzzles.default = puzzles.list[0]
+# f = open('puzzles.json', 'w')
+# f.write(jsonpickle.encode(puzzles))
+# f.close()
 
 f = open('puzzles.json', 'r')
 puzzles = jsonpickle.decode(f.read())
+f.close()
 
-puzzles.print_self()
+current_puzzle = puzzles.default
+print("Puzzle:", current_puzzle.name)
+print("Solves:", len(current_puzzle.solves))
+print("Best:", current_puzzle.best)
+
+
