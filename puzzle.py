@@ -35,7 +35,7 @@ class Puzzle:
     def add_solve(self, time, shuffle):
         self.session_solves += 1
         print(time)
-        self.solves.append([time, shuffle, asctime()])
+        self.overall_solves.append([time, shuffle, asctime()])
         self.session_best = min(self.session_best, time)
         if time < self.overall_best:
             print("new best! You beat your previous record by", self.overall_best - time, "seconds!")
@@ -43,4 +43,18 @@ class Puzzle:
         self.update_statistics()
 
     def update_statistics(self):
-        print("")
+        if self.session_solves >= 3:
+            self.session_average_of_three = (self.overall_solves[-1] + self.overall_solves[-2] + self.overall_solves[-3]) / 3
+
+        if self.session_solves >= 5:
+            self.bubble_sort(self.overall_solves[-3:-1])
+
+        if self.session_solves >= 12:
+            self.bubble_sort(self.overall_solves[-12:-1])
+
+        if self.session_solves >= 100:
+            self.bubble_sort(self.overall_solves[-100:-1])
+
+
+    def bubble_sort(self, list):
+        return list
