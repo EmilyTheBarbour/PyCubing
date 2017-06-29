@@ -1,0 +1,36 @@
+{
+  "default": {
+    "shuffles": [],
+    "description": "cuboid who's faces measure 3x3, each rotating along the center cubie",
+    "name": "3x3",
+    "py/object": "puzzle.Puzzle",
+    "solves": []
+  },
+  "py/object": "puzzle.Puzzles",
+  "list": [
+    {
+      "py/id": 1
+    },
+    {
+      "shuffles": [],
+      "description": "cuboid who's faces measure 2x2, each rotating perpendicular to the center of the cube",
+      "name": "2x2",
+      "py/object": "puzzle.Puzzle",
+      "solves": []
+    },
+    {
+      "shuffles": [],
+      "description": "cuboid who's faces measure 4x4, each rotating along the center cubie",
+      "name": "4x4",
+      "py/object": "puzzle.Puzzle",
+      "solves": []
+    },
+    {
+      "shuffles": [],
+      "description": "cuboid who rotates in thirds about each corner",
+      "name": "skewb",
+      "py/object": "puzzle.Puzzle",
+      "solves": []
+    }
+  ]
+}
