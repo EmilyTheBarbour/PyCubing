@@ -1,1 +1,97 @@
-{"py/object": "puzzle.Puzzles", "list": [{"py/id": 1}], "default": {"overall_best_of_hundred": 0, "overall_best_of_twelve": 0, "overall_average_of_three": 0, "session_best": 9999, "overall_best_of_five": 0, "session_average_of_three": 0, "py/object": "puzzle.Puzzle", "name": "3x3", "overall_solves": [], "session_solves": 0, "session_best_of_five": 0, "shuffles": [], "session_best_of_twelve": 0, "overall_best": 9999, "description": "", "session_best_of_hundred": 0}}
+{
+  "default": {
+    "overall_best": 0.11,
+    "overall_best_of_five": 0,
+    "session_solves": 14,
+    "name": "3x3",
+    "session_best_of_five": 0.27,
+    "session_best_of_hundred": 0,
+    "shuffles": [],
+    "session_average_of_three": 0.34,
+    "overall_best_of_twelve": 0,
+    "overall_best_of_hundred": 0,
+    "overall_average_of_three": 0,
+    "session_best": 0.11,
+    "description": "",
+    "py/object": "puzzle.Puzzle",
+    "overall_solves": [
+      [
+        0.79,
+        "shuffle",
+        "Thu Jun 29 06:11:00 2017"
+      ],
+      [
+        0.11,
+        "shuffle",
+        "Thu Jun 29 06:11:03 2017"
+      ],
+      [
+        0.81,
+        "shuffle",
+        "Thu Jun 29 06:11:06 2017"
+      ],
+      [
+        0.29,
+        "shuffle",
+        "Thu Jun 29 06:11:08 2017"
+      ],
+      [
+        0.55,
+        "shuffle",
+        "Thu Jun 29 06:11:10 2017"
+      ],
+      [
+        0.48,
+        "shuffle",
+        "Thu Jun 29 06:11:13 2017"
+      ],
+      [
+        0.36,
+        "shuffle",
+        "Thu Jun 29 06:11:15 2017"
+      ],
+      [
+        0.55,
+        "shuffle",
+        "Thu Jun 29 06:11:17 2017"
+      ],
+      [
+        0.3,
+        "shuffle",
+        "Thu Jun 29 06:11:20 2017"
+      ],
+      [
+        0.32,
+        "shuffle",
+        "Thu Jun 29 06:11:23 2017"
+      ],
+      [
+        0.22,
+        "shuffle",
+        "Thu Jun 29 06:11:25 2017"
+      ],
+      [
+        0.27,
+        "shuffle",
+        "Thu Jun 29 06:11:27 2017"
+      ],
+      [
+        0.12,
+        "shuffle",
+        "Thu Jun 29 06:11:29 2017"
+      ],
+      [
+        0.63,
+        "shuffle",
+        "Thu Jun 29 06:11:32 2017"
+      ]
+    ],
+    "session_best_of_twelve": 0.4
+  },
+  "list": [
+    {
+      "py/id": 1
+    }
+  ],
+  "py/object": "puzzle.Puzzles"
+}

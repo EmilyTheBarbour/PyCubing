@@ -69,7 +69,7 @@ class Puzzle:
             temp.pop(0)
             temp.pop(-1)
 
-            self.session_best_of_five = round(reduce(lambda x, y: x + y, temp) / 10, 2)
+            self.session_best_of_twelve = round(reduce(lambda x, y: x + y, temp) / 10, 2)
 
         if self.session_solves >= 100:
             temp = []
@@ -79,6 +79,6 @@ class Puzzle:
             temp.pop(0)
             temp.pop(-1)
 
-            self.session_best_of_five = round(reduce(lambda x, y: x + y, temp) / 98, 2)
+            self.session_best_of_hundred = round(reduce(lambda x, y: x + y, temp) / 98, 2)
 
 
