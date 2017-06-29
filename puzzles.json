@@ -1,1 +1,25 @@
-{"list": [{"py/id": 1}], "py/object": "puzzle.Puzzles", "default": {"solves": [], "average_of_twelve": 0, "average_of_three": 0, "shuffles": [], "name": "3x3", "description": "", "py/object": "puzzle.Puzzle", "best": 0, "average_of_five": 0, "average_of_hundred": 0}}
+{
+  "py/object": "puzzle.Puzzles",
+  "default": {
+    "overall_average_of_hundred": 0,
+    "overall_average_of_five": 0,
+    "solves": [],
+    "session_average_of_three": 0,
+    "session_average_of_five": 0,
+    "py/object": "puzzle.Puzzle",
+    "session_average_of_twelve": 0,
+    "session_average_of_hundred": 0,
+    "shuffles": [],
+    "name": "3x3",
+    "overall_average_of_three": 0,
+    "session_best": 9999,
+    "overall_average_of_twelve": 0,
+    "description": "",
+    "overall_best": 9999
+  },
+  "list": [
+    {
+      "py/id": 1
+    }
+  ]
+}

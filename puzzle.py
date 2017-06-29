@@ -1,3 +1,5 @@
+from time import asctime
+
 class Puzzles:
     def __init__(self):
         self.list = []
@@ -15,12 +17,27 @@ class Puzzle:
         self.description  = ""
         self.solves = []
         self.shuffles = []
-        self.best = 0
-        self.average_of_three = 0
-        self.average_of_five = 0
-        self.average_of_twelve = 0
-        self.average_of_hundred = 0
 
-    #a solve is a 3 item list, consistent of [time, shuffle, date_and_time]
-    def add_solve(self, solve):
-        self.solves.append(solve)
+        self.session_best = 9999
+        self.session_average_of_three = 0
+        self.session_average_of_five = 0
+        self.session_average_of_twelve = 0
+        self.session_average_of_hundred = 0
+
+        self.overall_best = 9999
+        self.overall_average_of_three = 0
+        self.overall_average_of_five = 0
+        self.overall_average_of_twelve = 0
+        self.overall_average_of_hundred = 0
+
+    # a solve is a 3 item list, consistent of [time, shuffle, date_and_time]
+    def add_solve(self, time, shuffle):
+        self.solves.append([time, shuffle, asctime()])
+        self.session_best = min(self.session_best, time)
+        if time < self.overall_best:
+            print("new best! You beat your previous record by", self.overall_best - time, "seconds!")
+            self.overall_best = time
+        self.update_statistics()
+
+    def update_statistics(self):
+        print("")
