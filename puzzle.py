@@ -15,15 +15,16 @@ class Puzzle:
     def __init__(self, name):
         self.name = name
         self.description  = ""
-        self.solves = []
         self.shuffles = []
 
+        self.session_solves = 0
         self.session_best = 9999
         self.session_average_of_three = 0
         self.session_average_of_five = 0
         self.session_average_of_twelve = 0
         self.session_average_of_hundred = 0
 
+        self.overall_solves = []
         self.overall_best = 9999
         self.overall_average_of_three = 0
         self.overall_average_of_five = 0
@@ -32,6 +33,8 @@ class Puzzle:
 
     # a solve is a 3 item list, consistent of [time, shuffle, date_and_time]
     def add_solve(self, time, shuffle):
+        self.session_solves += 1
+        print(time)
         self.solves.append([time, shuffle, asctime()])
         self.session_best = min(self.session_best, time)
         if time < self.overall_best:
