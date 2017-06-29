@@ -3,6 +3,7 @@ a text based environment for providing cubers tools to practice and track their 
 
 # Current supported functions
 * puzzle structure
+* current session statistics
 
 # Planned functions
 1. general time management statistics
