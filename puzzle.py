@@ -1,4 +1,5 @@
 from time import asctime
+from bubblesort import bubble_sort
 
 class Puzzles:
     def __init__(self):
@@ -47,14 +48,12 @@ class Puzzle:
             self.session_average_of_three = (self.overall_solves[-1] + self.overall_solves[-2] + self.overall_solves[-3]) / 3
 
         if self.session_solves >= 5:
-            self.bubble_sort(self.overall_solves[-3:-1])
+            bubble_sort(self.overall_solves[-3:-1])
 
         if self.session_solves >= 12:
-            self.bubble_sort(self.overall_solves[-12:-1])
+            bubble_sort(self.overall_solves[-12:-1])
 
         if self.session_solves >= 100:
-            self.bubble_sort(self.overall_solves[-100:-1])
+            bubble_sort(self.overall_solves[-100:-1])
 
 
-    def bubble_sort(self, list):
-        return list
