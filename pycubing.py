@@ -1,8 +1,9 @@
-from puzzle import Puzzle
+from puzzle import Puzzle, Puzzles
 import jsonpickle
 
-#structured such that first item in list is preferred puzzle on startup
-puzzles = []
+puzzles = Puzzles()
 
-f = open('puzzles.json', 'w')
-f.write(jsonpickle.encode(puzzles))
+f = open('puzzles.json', 'r')
+puzzles = jsonpickle.decode(f.read())
+
+puzzles.print_self()
