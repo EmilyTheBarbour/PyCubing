@@ -1,5 +1,6 @@
 from time import asctime
 from bubblesort import bubble_sort
+from functools import reduce
 
 class Puzzles:
     def __init__(self):
@@ -45,15 +46,39 @@ class Puzzle:
 
     def update_statistics(self):
         if self.session_solves >= 3:
-            self.session_average_of_three = round((self.overall_solves[-1][0] + self.overall_solves[-2][0] + self.overall_solves[-3][0]) / 3, 2)
+            temp = []
+            for e in self.overall_solves[-3:]:
+                temp.append(e[0])
+            self.session_average_of_three = round(reduce(lambda x, y: x + y, temp) / 3, 2)
 
         if self.session_solves >= 5:
-            bubble_sort(self.overall_solves[-3:-1][0])
+            temp = []
+            for e in self.overall_solves[-5:]:
+                temp.append(e[0])
+            temp = bubble_sort(temp)
+            temp.pop(0)
+            temp.pop(-1)
+
+            self.session_best_of_five = round(reduce(lambda x, y: x + y, temp) / 3, 2)
 
         if self.session_solves >= 12:
-            bubble_sort(self.overall_solves[-12:-1][0])
+            temp = []
+            for e in self.overall_solves[-12:]:
+                temp.append(e[0])
+            temp = bubble_sort(temp)
+            temp.pop(0)
+            temp.pop(-1)
+
+            self.session_best_of_five = round(reduce(lambda x, y: x + y, temp) / 10, 2)
 
         if self.session_solves >= 100:
-            bubble_sort(self.overall_solves[-100:-1][0])
+            temp = []
+            for e in self.overall_solves[-100:]:
+                temp.append(e[0])
+            temp = bubble_sort(temp)
+            temp.pop(0)
+            temp.pop(-1)
+
+            self.session_best_of_five = round(reduce(lambda x, y: x + y, temp) / 98, 2)
 
 
