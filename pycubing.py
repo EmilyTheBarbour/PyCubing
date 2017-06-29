@@ -26,9 +26,9 @@ while quit == 0:
     print("Solves:", current_puzzle.session_solves)
     print("Best:  ", current_puzzle.overall_best)
     if current_puzzle.session_solves >= 3  : print("Ao3:   ", current_puzzle.session_average_of_three)
-    if current_puzzle.session_solves >= 5  : print("Ao5:   ", current_puzzle.session_average_of_five)
-    if current_puzzle.session_solves >= 12 : print("Ao12:  ", current_puzzle.session_average_of_twelve)
-    if current_puzzle.session_solves >= 100: print("Ao100: ", current_puzzle.session_average_of_hundred)
+    if current_puzzle.session_solves >= 5  : print("Bo5:   ", current_puzzle.session_best_of_five)
+    if current_puzzle.session_solves >= 12 : print("Bo12:  ", current_puzzle.session_best_of_twelve)
+    if current_puzzle.session_solves >= 100: print("Bo100: ", current_puzzle.session_best_of_hundred)
     print("-----------------------------------------------------------------\n")
 
     if input("press enter to start time. press 1 to end ") == "1": break
