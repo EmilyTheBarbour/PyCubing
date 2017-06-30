@@ -1,12 +1,19 @@
 from time import asctime
 from bubblesort import bubble_sort
 from functools import reduce
+from enum import Enum
 import random
 
 # bubblesort is used to sort the list of times in statistical analysis (for example best of 5) so that
 # the fastest and slowest times can be removed
 # reduce is used to implement a lambda function that adds all items of a list together such that it can be divided
 # by its length
+
+
+class Solve(Enum):
+    TIME = 0
+    SHUFFLE = 1
+    DATE_TIME = 2
 
 
 # class structure used mainly for organizing all of the objects for json encoding and decoding
@@ -61,25 +68,26 @@ class Puzzle:
 
     # a solve is a 3 item list, consistent of [float time, string shuffle, string date_and_time]
     # date time is in the format of "abDoW abMonth day HH:MM:SS year"
-    def add_solve(self, time, shuffle):
+    def add_solve(self, solve):
         self.session_solves += 1
 
         # place holder for printing time
         # TODO: to be moved to main UI handling
-        print(time)
+        print(solve[Solve.TIME])
 
         # generate list of solve information and append it to overall solves list
-        self.overall_solves.append([time, shuffle, asctime()])
+        self.overall_solves.append(solve)
 
         # assign session best to the minimum time between session best and current solve time: will not be broadcast
-        self.session_best = min(self.session_best, time)
+        self.session_best = min(self.session_best, solve[Solve.TIME])
 
         # place holder for determining if user got a new personal best;
         # TODO: split such that add_solve returns a value
         # TODO: that can be used to infer any extra information by the UI handling
-        if time < self.overall_best:
-            print("new best! You beat your previous record by", round(self.overall_best, 2) - time, "seconds!")
-            self.overall_best = time
+        if solve[Solve.TIME] < self.overall_best:
+            print("new best! You beat your previous record by",
+                  round(self.overall_best, 2) - solve[Solve.TIME], "seconds!")
+            self.overall_best = solve[Solve.TIME]
 
         #
         self.update_statistics()

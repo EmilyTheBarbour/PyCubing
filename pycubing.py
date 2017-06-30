@@ -33,6 +33,8 @@ quit_loop = 0
 # TODO: implement proper main loop
 while quit_loop == 0:
 
+    current_solve = [0, current_puzzle.generate_shuffle(), ]
+
     # Intended to clear the console so that the text is displayed in the same place every time
     os.system('cls')
 
@@ -64,8 +66,6 @@ while quit_loop == 0:
     # place holder used to pause UI refresh
     # TODO: implement separate UI module
     time.sleep(1)
-
-puzzles[0].add_shuffles('puzzles/3x3_shuffles.txt')
 
 # upon exit, populate json file with puzzles class, saving data
 f = open('puzzles.json', 'w')
