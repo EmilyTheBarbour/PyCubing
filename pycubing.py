@@ -26,15 +26,18 @@ f.close()
 current_puzzle = puzzles.default
 
 # place holder variable to cause main program to loop until exit is desired
+# TODO: implement proper main loop
 quit_loop = 0
 
 # place holder main loop
+# TODO: implement proper main loop
 while quit_loop == 0:
 
     # Intended to clear the console so that the text is displayed in the same place every time
     os.system('cls')
 
     # place holder UI used to test core functionality; needs replacing
+    # TODO: separate UI into it's own module; no UI management done outside this section
     print("Session of", time.strftime("%B %d, %Y", time.localtime()))
     print("-----------------------------------------------------------------")
     print("Puzzle:", current_puzzle.name)
@@ -47,6 +50,7 @@ while quit_loop == 0:
     print("-----------------------------------------------------------------\n")
 
     # place holder input validation for timer starting and stopping, as well as exiting when 1 is received
+    # TODO: implement propper input detection
     if input("press enter to start time. press 1 to end ") == "1": break
 
     start = time.time()
@@ -57,6 +61,7 @@ while quit_loop == 0:
     current_puzzle.add_solve(round(stop - start, 2), "shuffle")
 
     # place holder used to pause UI refresh
+    # TODO: implement separate UI module
     time.sleep(1)
 
 # upon exit, populate json file with puzzles class, saving data

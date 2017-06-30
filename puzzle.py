@@ -44,15 +44,31 @@ class Puzzle:
     # date time is in the format of "abDoW abMonth day HH:MM:SS year"
     def add_solve(self, time, shuffle):
         self.session_solves += 1
+
+        # place holder for printing time
+        # TODO: to be moved to main UI handling
         print(time)
+
+        # generate list of solve information and append it to overall solves list
         self.overall_solves.append([time, shuffle, asctime()])
+
+        # assign session best to the minimum time between session best and current solve time: will not be broadcast
         self.session_best = min(self.session_best, time)
+
+        # place holder for determining if user got a new personal best;
+        # TODO: split such that add_solve returns a value
+        # TODO: that can be used to infer any extra information by the UI handling
         if time < self.overall_best:
             print("new best! You beat your previous record by", round(self.overall_best, 2) - time, "seconds!")
             self.overall_best = time
+
+        #
         self.update_statistics()
 
+    # used to update statistics; currently only handling session statistics
+    # TODO: implement overall statistics management, only perform one bubble sort for more efficiency
     def update_statistics(self):
+        #
         if self.session_solves >= 3:
             temp = []
             for e in self.overall_solves[-3:]:
