@@ -82,7 +82,7 @@ class Puzzle:
         # TODO: that can be used to infer any extra information by the UI handling
         if solve[Solve.TIME] < self.overall_best:
             print("new best! You beat your previous record by",
-                  round(self.overall_best, 2) - solve[Solve.TIME], "seconds!")
+                  round(self.overall_best - solve[Solve.TIME], 2), "seconds!")
             self.overall_best = solve[Solve.TIME]
 
         #

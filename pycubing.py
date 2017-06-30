@@ -51,8 +51,8 @@ while quit_loop == 0:
     if current_puzzle.session_solves >= 5  : print("Bo5:   ", current_puzzle.session_best_of_five)
     if current_puzzle.session_solves >= 12 : print("Bo12:  ", current_puzzle.session_best_of_twelve)
     if current_puzzle.session_solves >= 100: print("Bo100: ", current_puzzle.session_best_of_hundred)
-    print("-----------------------------------------------------------------\n")
-    print(current_solve[Solve.SHUFFLE])
+    print("-----------------------------------------------------------------")
+    print(current_solve[Solve.SHUFFLE], '\n')
 
     # place holder input validation for timer starting and stopping, as well as exiting when 1 is received
     # TODO: implement proper input detection
@@ -62,6 +62,7 @@ while quit_loop == 0:
     start = time.time()
     input("press enter to stop time.")
     stop = time.time()
+    current_solve[Solve.TIME] = round(stop - start, 2)
 
     # adds the resulting time and shuffle to the puzzle for handling
     current_puzzle.add_solve(current_solve)
@@ -74,4 +75,3 @@ while quit_loop == 0:
 f = open('puzzles.json', 'w')
 f.write(jsonpickle.encode(puzzles))
 f.close()
-
