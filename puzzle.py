@@ -23,6 +23,13 @@ class Puzzles:
     def __getitem__(self, item):
         return self.list[item]
 
+    def __len__(self):
+        return len(self.list)
+
+    def __iter__(self):
+        for e in self.list:
+            yield e
+
 
 # main class structure used for holding information for each of the different puzzles in use
 class Puzzle:

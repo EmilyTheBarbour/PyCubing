@@ -4,6 +4,8 @@ import jsonpickle
 from puzzle import Solve
 from userinterface import UI, OptionsPage
 
+version = "0.5"
+
 # time is used to generate date_times for session logging, and time() for timing solves (stop - start)
 # os is intended to be used for clearing the screen, although this functionality is currently nonworking
 # jsonpickle is the module for encoding and decoding object structures into json files: used for puzzles
@@ -21,12 +23,16 @@ from userinterface import UI, OptionsPage
 
 
 # open stream reader to puzzles json file, generating the puzzles class from said file
-f = open('puzzles.json', 'r')
+f = open('puzzles/puzzles.json', 'r')
 puzzles = jsonpickle.decode(f.read())
 f.close()
 
 # set the current working puzzle to the default puzzle loaded from the json file
 current_puzzle = puzzles.default
+
+# display some diagnostic information on startup
+UI.display_start_up(version, puzzles, current_puzzle)
+input()
 
 # place holder main loop
 # TODO: implement proper main loop

@@ -3,7 +3,6 @@ from puzzle import Solve
 
 
 class UI:
-
     # place holder clear functionality
     # TODO: find better clear implementation
     @staticmethod
@@ -11,13 +10,29 @@ class UI:
         print('\n' * 50)
         # os.system('cls' if os.name == 'nt' else 'clear')
 
+    @staticmethod
+    def display_start_up(version, puzzles, current_puzzle):
+        UI.clear()
+        print("PyCubing version", version)
+        print(len(puzzles), "puzzle loaded.")
+        for i, e in enumerate(puzzles):
+            print("-----------------------------------------------------------------")
+            print("Puzzle", i)
+            print("Name:", e.name)
+            print("Description:", e.description)
+            print("Shuffle count:", len(e.shuffles))
+
+        print("-----------------------------------------------------------------")
+        print("default puzzle", current_puzzle.name, "loaded.")
+        print('\n')
+        print("Press enter to continue.")
+
     # display the main page, detailing puzzle, statistics, and solve information
     @staticmethod
     def display_home(current_puzzle, current_solve):
         UI.clear()
 
         print("Session of", time.strftime("%B %d, %Y", time.localtime()))
-        print(len(current_puzzle.shuffles), "Shuffles loaded.")
         print("-----------------------------------------------------------------")
         print("Puzzle:", current_puzzle.name)
         print("Solves:", current_puzzle.session_solves)
