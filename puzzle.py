@@ -2,23 +2,29 @@ from time import asctime
 from bubblesort import bubble_sort
 from functools import reduce
 
+# bubblesort is used to sort the list of times in statistical analysis (for example best of 5) so that
+# the fastest and slowest times can be removed
+# reduce is used to implement a lambda function that adds all items of a list together such that it can be divided
+# by its length
+
+# class structure used mainly for organizing all of the objects for json encoding and decoding
 class Puzzles:
     def __init__(self):
+        # list of all the used puzzles
         self.list = []
+        # default Puzzle used on load
         self.default = Puzzle("default")
 
-
-    def print_self(self):
-        print(vars(self.default))
-        print([(i, vars(j)) for i, j in enumerate(self.list)])
-
+# main class structure used for holding information for each of the different puzzles in use
 class Puzzle:
 
     def __init__(self, name):
+        # core information about the puzzle
         self.name = name
         self.description  = ""
         self.shuffles = []
 
+        # statistics related to the current session
         self.session_solves = 0
         self.session_best = 9999
         self.session_average_of_three = 0
@@ -26,6 +32,7 @@ class Puzzle:
         self.session_best_of_twelve = 0
         self.session_best_of_hundred = 0
 
+        # statistics related to the overall performance
         self.overall_solves = []
         self.overall_best = 9999
         self.overall_average_of_three = 0
@@ -33,7 +40,8 @@ class Puzzle:
         self.overall_best_of_twelve = 0
         self.overall_best_of_hundred = 0
 
-    # a solve is a 3 item list, consistent of [time, shuffle, date_and_time]
+    # a solve is a 3 item list, consistent of [float time, string shuffle, string date_and_time]
+    # date time is in the format of "abDoW abMonth day HH:MM:SS year"
     def add_solve(self, time, shuffle):
         self.session_solves += 1
         print(time)

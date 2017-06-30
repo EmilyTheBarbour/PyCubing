@@ -2,6 +2,9 @@ import time
 import os
 import jsonpickle
 
+# time is used to generate date_times for session logging, and time() for timing solves (stop - start)
+# os is intended to be used for clearing the screen, although this functionality is currently nonworking
+# jsonpickle is the module for encoding and decoding object structures into json files: used for puzzles
 
 # region
 # place holder code to reset json file as well as initialize new fields
