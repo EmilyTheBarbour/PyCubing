@@ -24,6 +24,7 @@ class Puzzle:
         self.name = name
         self.description = ""
         self.shuffles = []
+        self.shuffles_file = ""
 
         # statistics related to the current session
         self.session_solves = 0
@@ -40,6 +41,7 @@ class Puzzle:
         self.overall_best_of_five = 0
         self.overall_best_of_twelve = 0
         self.overall_best_of_hundred = 0
+        self.overall_session_date_and_times = []
 
     # a shuffle is a string containing moves separated by spaces; each shuffle is itself separated by a new line
     def add_shuffles(self, input_string):
