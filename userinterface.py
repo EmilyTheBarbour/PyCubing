@@ -17,10 +17,14 @@ class UI:
         print(len(puzzles), "puzzle loaded.")
         for i, e in enumerate(puzzles):
             print("-----------------------------------------------------------------")
-            print("Puzzle", i)
+            print("Puzzle #{}".format(i + 1))
             print("Name:", e.name)
             print("Description:", e.description)
             print("Shuffle count:", len(e.shuffles))
+            print("Number of solves:", len(e.overall_solves))
+            print("Ao3: ", e.overall_average_of_three)
+            print("Bo5: ", e.overall_best_of_five)
+            print("Bo12:", e.overall_best_of_twelve)
 
         print("-----------------------------------------------------------------")
         print("default puzzle", current_puzzle.name, "loaded.")

@@ -99,45 +99,36 @@ class Puzzle:
     # all parts use a temp list so that a list of only the time component of a solve is generated
     # TODO: implement overall statistics management, only perform one bubble sort for more efficiency
     def update_statistics(self):
+
+        # generate sorted solves that each statistic uses, done so that only one bubble sort is called
+        # only works with last 100 since no statistic requires more
+        sorted_solves = []
+        for e in self.overall_solves[-min(self.session_solves, 100):]:
+            sorted_solves.append(e[Solve.TIME])
+        sorted_solves = bubble_sort(sorted_solves)
+
         # Average of 3 computation
         if self.session_solves >= 3:
-            temp = []
-            for e in self.overall_solves[-3:]:
-                temp.append(e[0])
+            temp = sorted_solves[-3:]
             self.session_average_of_three = round(reduce(lambda x, y: x + y, temp) / 3, 2)
-
-        # All of the Best of x computations follow the same format:
-        # generate temp list of last x solves, sort them using a bubble sort, and pop off the lowest and highest time
-        # then take the statistical mean and report
 
         # Best of 5
         if self.session_solves >= 5:
-            temp = []
-            for e in self.overall_solves[-5:]:
-                temp.append(e[0])
-            temp = bubble_sort(temp)
+            temp = sorted_solves[-5:]
             temp.pop(0)
             temp.pop(-1)
-
             self.session_best_of_five = round(reduce(lambda x, y: x + y, temp) / 3, 2)
 
         # Best of 12
         if self.session_solves >= 12:
-            temp = []
-            for e in self.overall_solves[-12:]:
-                temp.append(e[0])
-            temp = bubble_sort(temp)
+            temp = sorted_solves[-12:]
             temp.pop(0)
             temp.pop(-1)
-
             self.session_best_of_twelve = round(reduce(lambda x, y: x + y, temp) / 10, 2)
+
         # Best of 100
         if self.session_solves >= 100:
-            temp = []
-            for e in self.overall_solves[-100:]:
-                temp.append(e[0])
-            temp = bubble_sort(temp)
+            temp = sorted_solves
             temp.pop(0)
             temp.pop(-1)
-
             self.session_best_of_hundred = round(reduce(lambda x, y: x + y, temp) / 98, 2)
