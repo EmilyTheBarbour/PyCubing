@@ -1,14 +1,18 @@
 import time
 import os
 import jsonpickle
-from puzzle import Puzzle, Puzzles
 
+
+# region
+# place holder code to reset json file as well as initialize new fields
+# from puzzle import Puzzle, Puzzles
 # puzzles = Puzzles()
 # puzzles.list.append(Puzzle("3x3"))
 # puzzles.default = puzzles.list[0]
 # f = open('puzzles.json', 'w')
 # f.write(jsonpickle.encode(puzzles))
 # f.close()
+# endregion
 
 # open stream reader to puzzles json file, generating the puzzles class from said file
 f = open('puzzles.json', 'r')
@@ -27,7 +31,7 @@ while quit_loop == 0:
     # Intended to clear the console so that the text is displayed in the same place every time
     os.system('cls')
 
-    #place holder UI used to test core functionality; needs replacing
+    # place holder UI used to test core functionality; needs replacing
     print("Session of", time.strftime("%B %d, %Y", time.localtime()))
     print("-----------------------------------------------------------------")
     print("Puzzle:", current_puzzle.name)
@@ -46,11 +50,13 @@ while quit_loop == 0:
     input("press enter to stop time.")
     stop = time.time()
 
+    # adds the resulting time and shuffle to the puzzle for handling
     current_puzzle.add_solve(round(stop - start, 2), "shuffle")
 
+    # place holder used to pause UI refresh
     time.sleep(1)
 
-
+# upon exit, populate json file with puzzles class, saving data
 f = open('puzzles.json', 'w')
 f.write(jsonpickle.encode(puzzles))
 f.close()
