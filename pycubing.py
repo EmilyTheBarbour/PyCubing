@@ -40,6 +40,7 @@ while True:
 
     # create a new solve
     current_solve = [0, current_puzzle.generate_shuffle(), time.asctime()]
+    old_best = current_puzzle.overall_best
 
     # place holder UI used to test core functionality; needs replacing
     # TODO: separate UI into it's own module; no UI management done outside this section
@@ -52,9 +53,9 @@ while True:
     action = input()
     if action == "":
         start = time.time()
-    elif action == 1:
+    elif action == "1":
         UI.display_options(OptionsPage.HOME)
-    elif action == 0:
+    elif action == "0":
         break
     else:
         print("Error, unknown input, please try again.")
@@ -63,14 +64,15 @@ while True:
     stop = time.time()
     current_solve[Solve.TIME] = round(stop - start, 2)
 
-    # adds the resulting solve to the puzzle
-    current_puzzle.add_solve(current_solve)
+    # adds the resulting solve to the puzzle, getting all of the different statistics changed in return
+    solve_results = current_puzzle.add_solve(current_solve)
+    UI.display_solve_results(current_solve, solve_results)
 
     # place holder used to pause UI refresh
     # TODO: implement separate UI module
     time.sleep(1)
 
 # upon exit, populate json file with puzzles class, saving data
-f = open('puzzles.json', 'w')
+f = open('puzzles/puzzles.json', 'w')
 f.write(jsonpickle.encode(puzzles))
 f.close()

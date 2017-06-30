@@ -27,9 +27,15 @@ class UI:
             print("Bo12:", e.overall_best_of_twelve)
 
         print("-----------------------------------------------------------------")
-        print("default puzzle", current_puzzle.name, "loaded.")
-        print('\n')
+        print("default puzzle", current_puzzle.name, "loaded.", '\n')
         print("Press enter to continue.")
+
+    # display to the user that a new personal best was achieved that is x seconds faster
+    @staticmethod
+    def display_solve_results(solve, solve_results):
+        print(solve[Solve.TIME])
+        print("new best! You beat your previous record by",
+              round(solve_results - solve[Solve.TIME], 2), "seconds!")
 
     # display the main page, detailing puzzle, statistics, and solve information
     @staticmethod
@@ -52,6 +58,7 @@ class UI:
     @staticmethod
     def display_options(options_page):
         print("To be implemented.")
+
 
 
 # class for readability when designating which option page to navigate to
