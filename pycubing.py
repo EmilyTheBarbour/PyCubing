@@ -3,6 +3,7 @@ import os
 import jsonpickle
 from puzzle import Solve
 from userinterface import UI, OptionsPage
+from options import Options
 
 version = "0.5"
 
@@ -60,21 +61,24 @@ while True:
     action = input()
     if action == "":
         start = time.time()
+        input("press enter to stop time.")
+        stop = time.time()
+        current_solve[Solve.TIME] = round(stop - start, 2)
+
+        # adds the resulting solve to the puzzle, getting all of the different statistics changed in return
+        solve_results = current_puzzle.add_solve(current_solve)
+        UI.display_solve_results(current_solve, solve_results)
+        input()
+
     elif action == "1":
-        UI.display_options(OptionsPage.HOME)
+        Options.show(current_puzzle, puzzles)
+        current_puzzle = Options.current_puzzle_out
+        puzzles = Options.puzzles_out
     elif action == "0":
         break
     else:
-        print("Error, unknown input, please try again.")
-
-    input("press enter to stop time.")
-    stop = time.time()
-    current_solve[Solve.TIME] = round(stop - start, 2)
-
-    # adds the resulting solve to the puzzle, getting all of the different statistics changed in return
-    solve_results = current_puzzle.add_solve(current_solve)
-    UI.display_solve_results(current_solve, solve_results)
-    input()
+        UI.display_error(0x000001)
+        input()
 
 # upon exit, populate json file with puzzles class, saving data
 f = open('puzzles/puzzles.json', 'w')

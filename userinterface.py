@@ -72,10 +72,44 @@ class UI:
         print("Enter to start. 1 for options. 0 for exit.")
 
     @staticmethod
-    def display_options(options_page):
-        print("To be implemented.")
+    def display_options(options_page, current_puzzle, puzzles):
+        if options_page == OptionsPage.HOME:
+            UI.clear()
+            print("1. Puzzle Select")
+            print("2. Puzzle Options ({})".format(current_puzzle.name))
+            print("3. General Options")
+            print("4. ")
+            print("-----------------------------------------------------------------")
+            print("Enter number for page.")
+
+        if options_page == OptionsPage.PUZZLE_SELECT:
+            UI.clear()
+            for i, e in enumerate(puzzles):
+                print("{}. {}".format(i + 1, e.name))
+            print("-----------------------------------------------------------------")
+            print("Enter number to select cube. enter nothing to return to the last page")
+
+        if options_page == OptionsPage.PUZZLE_OPTIONS:
+            UI.clear()
+            print("1. Clear Solves and Statistics")
+            print("-----------------------------------------------------------------")
+            print("Enter number for option.")
+
+        if options_page == OptionsPage.GENERAL_OPTIONS:
+            UI.clear()
+            print("home")
+
+    @staticmethod
+    def display_error(error_code):
+        if error_code == 0x000001:
+            print("Error: Unknown input, please try again.")
+        if error_code == 0x000002:
+            print("Error: Expected a number, but you entered something else. please try again.")
 
 
 # class for readability when designating which option page to navigate to
 class OptionsPage:
     HOME = 0
+    PUZZLE_SELECT = 1
+    PUZZLE_OPTIONS = 2
+    GENERAL_OPTIONS = 3
