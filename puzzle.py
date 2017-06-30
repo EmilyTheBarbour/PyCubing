@@ -37,6 +37,9 @@ class Puzzles:
         for e in self.list:
             yield e
 
+    def append(self, x):
+        self.list.append(x)
+
 
 # main class structure used for holding information for each of the different puzzles in use
 class Puzzle:
@@ -74,6 +77,7 @@ class Puzzle:
 
     # returns a random shuffle from the list of shuffles; can be expanded to an algorithm in the future
     def generate_shuffle(self):
+        print(self.shuffles)
         return self.shuffles[random.randint(0, len(self.shuffles) - 1)]
 
     # a solve is a 3 item list, consistent of [float time, string shuffle, string date_and_time]

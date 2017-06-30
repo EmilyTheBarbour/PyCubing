@@ -78,7 +78,7 @@ class UI:
             print("1. Puzzle Select")
             print("2. Puzzle Options ({})".format(current_puzzle.name))
             print("3. General Options")
-            print("4. ")
+            print("4. Exit")
             print("-----------------------------------------------------------------")
             print("Enter number for page.")
 

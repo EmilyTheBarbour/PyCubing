@@ -1,7 +1,7 @@
 import time
 import os
 import jsonpickle
-from puzzle import Solve
+from puzzle import Solve, Puzzles
 from userinterface import UI, OptionsPage
 from options import Options
 
@@ -25,8 +25,17 @@ version = "0.5"
 
 # open stream reader to puzzles json file, generating the puzzles class from said file
 f = open('puzzles/puzzles.json', 'r')
-puzzles = jsonpickle.decode(f.read())
+puzzles_buffer = jsonpickle.decode(f.read())
 f.close()
+
+puzzles = Puzzles()
+for e in puzzles_buffer:
+    if e not in puzzles:
+        puzzles.append(e)
+puzzles.default = puzzles_buffer.default
+
+print(puzzles[0].shuffles)
+print(puzzles.default)
 
 # set the current working puzzle to the default puzzle loaded from the json file
 # TODO: find a better way to initialize session information such that it doesn't come from / save to json
