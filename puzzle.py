@@ -1,6 +1,7 @@
 from time import asctime
 from bubblesort import bubble_sort
 from functools import reduce
+import random
 
 # bubblesort is used to sort the list of times in statistical analysis (for example best of 5) so that
 # the fastest and slowest times can be removed
@@ -21,7 +22,7 @@ class Puzzle:
     def __init__(self, name):
         # core information about the puzzle
         self.name = name
-        self.description  = ""
+        self.description = ""
         self.shuffles = []
 
         # statistics related to the current session
@@ -43,6 +44,10 @@ class Puzzle:
     # a shuffle is a string containing moves separated by spaces; each shuffle is itself separated by a new line
     def add_shuffles(self, input_string):
         self.shuffles.extend(input_string.split('\n'))
+
+    # returns a random shuffle from the list of shuffles; can be expanded to an algorithm in the future
+    def generate_shuffle(self):
+        return self.shuffles[random.randint(0, len(self.shuffles) - 1)]
 
     # a solve is a 3 item list, consistent of [float time, string shuffle, string date_and_time]
     # date time is in the format of "abDoW abMonth day HH:MM:SS year"
