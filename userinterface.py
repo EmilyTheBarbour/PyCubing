@@ -22,6 +22,7 @@ class UI:
             print("Description:", e.description)
             print("Shuffle count:", len(e.shuffles))
             print("Number of solves:", len(e.overall_solves))
+            print("Overall best:", e.overall_best)
             print("Ao3: ", e.overall_average_of_three)
             print("Bo5: ", e.overall_best_of_five)
             print("Bo12:", e.overall_best_of_twelve)
@@ -33,14 +34,24 @@ class UI:
     # display to the user that a new personal best was achieved that is x seconds faster
     @staticmethod
     def display_solve_results(solve, solve_results):
-        print(solve[Solve.TIME])
+        # create a list of just the solve results tags
+        solve_results_tags = []
+        for e in solve_results:
+            solve_results_tags.append(e[0])
 
-        if SolveResults.NEW_SESSION_BEST in solve_results:
-            print("new best! You beat your previous record by",
-                  round(solve_results[solve_results.index(SolveResults.NEW_SESSION_BEST)][1]
+        print('\n', solve[Solve.TIME], '\n')
+
+        if SolveResults.NEW_SESSION_BEST in solve_results_tags:
+            print("new session best! You beat your previous record by",
+                  round(solve_results[solve_results_tags.index(SolveResults.NEW_SESSION_BEST)][1]
                         - solve[Solve.TIME], 2), "seconds!")
 
-        print("Press enter to continue.")
+        if SolveResults.NEW_OVERALL_BEST in solve_results_tags:
+            print("new overall best! You beat your previous record by",
+                  round(solve_results[solve_results_tags.index(SolveResults.NEW_OVERALL_BEST)][1]
+                        - solve[Solve.TIME], 2), "seconds!")
+
+        print('\n', "Press enter to continue.")
 
     # display the main page, detailing puzzle, statistics, and solve information
     @staticmethod
@@ -63,7 +74,6 @@ class UI:
     @staticmethod
     def display_options(options_page):
         print("To be implemented.")
-
 
 
 # class for readability when designating which option page to navigate to

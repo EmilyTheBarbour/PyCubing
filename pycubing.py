@@ -28,6 +28,7 @@ puzzles = jsonpickle.decode(f.read())
 f.close()
 
 # set the current working puzzle to the default puzzle loaded from the json file
+# TODO: find a better way to initialize session information such that it doesn't come from / save to json
 current_puzzle = puzzles.default
 current_puzzle.session_solves = 0
 current_puzzle.session_best = 9999
