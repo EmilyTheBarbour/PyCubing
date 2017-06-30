@@ -40,6 +40,10 @@ class Puzzle:
         self.overall_best_of_twelve = 0
         self.overall_best_of_hundred = 0
 
+    # a shuffle is a string containing moves separated by spaces; each shuffle is itself separated by a new line
+    def add_shuffles(self, input_string):
+        self.shuffles.extend(input_string.split('\n'))
+
     # a solve is a 3 item list, consistent of [float time, string shuffle, string date_and_time]
     # date time is in the format of "abDoW abMonth day HH:MM:SS year"
     def add_solve(self, time, shuffle):
