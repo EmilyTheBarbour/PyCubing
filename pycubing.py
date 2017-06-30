@@ -18,6 +18,13 @@ from puzzle import Solve
 # f.close()
 # endregion
 
+
+# place holder clear functionality
+# TODO: find better clear implementation
+def clear():
+    print('\n' * 50)
+    # os.system('cls' if os.name == 'nt' else 'clear')
+
 # open stream reader to puzzles json file, generating the puzzles class from said file
 f = open('puzzles.json', 'r')
 puzzles = jsonpickle.decode(f.read())
@@ -26,18 +33,14 @@ f.close()
 # set the current working puzzle to the default puzzle loaded from the json file
 current_puzzle = puzzles.default
 
-# place holder variable to cause main program to loop until exit is desired
-# TODO: implement proper main loop
-quit_loop = 0
-
 # place holder main loop
 # TODO: implement proper main loop
-while quit_loop == 0:
+while True:
 
     current_solve = [0, current_puzzle.generate_shuffle(), time.asctime()]
 
     # Intended to clear the console so that the text is displayed in the same place every time
-    os.system('cls')
+    clear()
 
     # place holder UI used to test core functionality; needs replacing
     # TODO: separate UI into it's own module; no UI management done outside this section
