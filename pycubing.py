@@ -2,6 +2,7 @@ import time
 import os
 import jsonpickle
 from puzzle import Solve
+from userinterface import UI, OptionsPage
 
 # time is used to generate date_times for session logging, and time() for timing solves (stop - start)
 # os is intended to be used for clearing the screen, although this functionality is currently nonworking
@@ -19,12 +20,6 @@ from puzzle import Solve
 # endregion
 
 
-# place holder clear functionality
-# TODO: find better clear implementation
-def clear():
-    print('\n' * 50)
-    # os.system('cls' if os.name == 'nt' else 'clear')
-
 # open stream reader to puzzles json file, generating the puzzles class from said file
 f = open('puzzles.json', 'r')
 puzzles = jsonpickle.decode(f.read())
@@ -37,37 +32,32 @@ current_puzzle = puzzles.default
 # TODO: implement proper main loop
 while True:
 
+    # create a new solve
     current_solve = [0, current_puzzle.generate_shuffle(), time.asctime()]
-
-    # Intended to clear the console so that the text is displayed in the same place every time
-    clear()
 
     # place holder UI used to test core functionality; needs replacing
     # TODO: separate UI into it's own module; no UI management done outside this section
-    print("Session of", time.strftime("%B %d, %Y", time.localtime()))
-    print(len(current_puzzle.shuffles), "Shuffles loaded.")
-    print("-----------------------------------------------------------------")
-    print("Puzzle:", current_puzzle.name)
-    print("Solves:", current_puzzle.session_solves)
-    print("Best:  ", current_puzzle.overall_best)
-    if current_puzzle.session_solves >= 3  : print("Ao3:   ", current_puzzle.session_average_of_three)
-    if current_puzzle.session_solves >= 5  : print("Bo5:   ", current_puzzle.session_best_of_five)
-    if current_puzzle.session_solves >= 12 : print("Bo12:  ", current_puzzle.session_best_of_twelve)
-    if current_puzzle.session_solves >= 100: print("Bo100: ", current_puzzle.session_best_of_hundred)
-    print("-----------------------------------------------------------------")
-    print(current_solve[Solve.SHUFFLE], '\n')
+    UI.display_home(current_puzzle, current_solve)
 
     # place holder input validation for timer starting and stopping, as well as exiting when 1 is received
     # TODO: implement proper input detection
-    if input("press enter to start time. press 1 to end ") == "1":
-        break
 
-    start = time.time()
+    # rudimentary input handling
+    action = input()
+    if action == "":
+        start = time.time()
+    elif action == 1:
+        UI.display_options(OptionsPage.HOME)
+    elif action == 0:
+        break
+    else:
+        print("Error, unknown input, please try again.")
+
     input("press enter to stop time.")
     stop = time.time()
     current_solve[Solve.TIME] = round(stop - start, 2)
 
-    # adds the resulting time and shuffle to the puzzle for handling
+    # adds the resulting solve to the puzzle
     current_puzzle.add_solve(current_solve)
 
     # place holder used to pause UI refresh
