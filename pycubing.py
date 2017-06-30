@@ -10,16 +10,24 @@ from puzzle import Puzzle, Puzzles
 # f.write(jsonpickle.encode(puzzles))
 # f.close()
 
+# open stream reader to puzzles json file, generating the puzzles class from said file
 f = open('puzzles.json', 'r')
 puzzles = jsonpickle.decode(f.read())
 f.close()
 
+# set the current working puzzle to the default puzzle loaded from the json file
 current_puzzle = puzzles.default
-quit = 0
 
-while quit == 0:
+# place holder variable to cause main program to loop until exit is desired
+quit_loop = 0
 
+# place holder main loop
+while quit_loop == 0:
+
+    # Intended to clear the console so that the text is displayed in the same place every time
     os.system('cls')
+
+    #place holder UI used to test core functionality; needs replacing
     print("Session of", time.strftime("%B %d, %Y", time.localtime()))
     print("-----------------------------------------------------------------")
     print("Puzzle:", current_puzzle.name)
@@ -31,7 +39,9 @@ while quit == 0:
     if current_puzzle.session_solves >= 100: print("Bo100: ", current_puzzle.session_best_of_hundred)
     print("-----------------------------------------------------------------\n")
 
+    # place holder input validation for timer starting and stopping, as well as exiting when 1 is received
     if input("press enter to start time. press 1 to end ") == "1": break
+
     start = time.time()
     input("press enter to stop time.")
     stop = time.time()
