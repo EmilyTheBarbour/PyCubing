@@ -92,19 +92,22 @@ class Puzzle:
     # all parts use a temp list so that a list of only the time component of a solve is generated
     # TODO: implement overall statistics management, only perform one bubble sort for more efficiency
     def update_statistics(self, solve):
-        # list of all the different updates to statistics for UI to parse
+        # list of all the different updates to statistics for UI to parse, as well as a value to display if desired
         solve_results = []
 
         # determine if session best has been beaten and add that to solve_results
         if solve[Solve.TIME] < self.session_best:
-            solve_results.append(SolveResults.NEW_SESSION_BEST)
+            solve_results.append([SolveResults.NEW_SESSION_BEST,
+                                  round(self.session_best - solve[Solve.TIME], 2)])
             self.session_best = solve[Solve.TIME]
 
         # determine if overall best has been beaten and add that to solve_results
         if solve[Solve.TIME] < self.overall_best:
-            solve_results.append(SolveResults.NEW_OVERALL_BEST)
+            solve_results.append([SolveResults.NEW_OVERALL_BEST,
+                                  round(self.overall_best - solve[Solve.TIME], 2)])
             self.overall_best = solve[Solve.TIME]
 
+        # TODO: fix only doing 2 bubble sorts as this does not represent proper statistics, make each check do it
         # generate sorted solves that each statistic uses, done so that only one bubble sort is called
         # only works with last 100 since no statistic requires more
         sorted_solves = []
@@ -137,6 +140,11 @@ class Puzzle:
             temp.pop(0)
             temp.pop(-1)
             self.session_best_of_hundred = round(reduce(lambda x, y: x + y, temp) / 98, 2)
+
+        # regenerate for overall
+        for e in self.overall_solves[-min(len(self.overall_solves), 100):]:
+            sorted_solves.append(e[Solve.TIME])
+        sorted_solves = bubble_sort(sorted_solves)
 
         # Overall Average of 3 computation
         if len(self.overall_solves) >= 3:

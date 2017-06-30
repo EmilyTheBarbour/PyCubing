@@ -29,6 +29,12 @@ f.close()
 
 # set the current working puzzle to the default puzzle loaded from the json file
 current_puzzle = puzzles.default
+current_puzzle.session_solves = 0
+current_puzzle.session_best = 9999
+current_puzzle.session_average_of_three = 0
+current_puzzle.session_best_of_five = 0
+current_puzzle.session_best_of_twelve = 0
+current_puzzle.session_best_of_hundred = 0
 
 # display some diagnostic information on startup
 UI.display_start_up(version, puzzles, current_puzzle)
@@ -67,10 +73,7 @@ while True:
     # adds the resulting solve to the puzzle, getting all of the different statistics changed in return
     solve_results = current_puzzle.add_solve(current_solve)
     UI.display_solve_results(current_solve, solve_results)
-
-    # place holder used to pause UI refresh
-    # TODO: implement separate UI module
-    time.sleep(1)
+    input()
 
 # upon exit, populate json file with puzzles class, saving data
 f = open('puzzles/puzzles.json', 'w')

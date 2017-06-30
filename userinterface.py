@@ -1,5 +1,5 @@
 import time
-from puzzle import Solve
+from puzzle import Solve, SolveResults
 
 
 class UI:
@@ -34,8 +34,13 @@ class UI:
     @staticmethod
     def display_solve_results(solve, solve_results):
         print(solve[Solve.TIME])
-        print("new best! You beat your previous record by",
-              round(solve_results - solve[Solve.TIME], 2), "seconds!")
+
+        if SolveResults.NEW_SESSION_BEST in solve_results:
+            print("new best! You beat your previous record by",
+                  round(solve_results[solve_results.index(SolveResults.NEW_SESSION_BEST)][1]
+                        - solve[Solve.TIME], 2), "seconds!")
+
+        print("Press enter to continue.")
 
     # display the main page, detailing puzzle, statistics, and solve information
     @staticmethod
@@ -46,7 +51,7 @@ class UI:
         print("-----------------------------------------------------------------")
         print("Puzzle:", current_puzzle.name)
         print("Solves:", current_puzzle.session_solves)
-        print("Best:  ", current_puzzle.overall_best)
+        print("Best:  ", current_puzzle.session_best)
         if current_puzzle.session_solves >= 3: print("Ao3:   ", current_puzzle.session_average_of_three)
         if current_puzzle.session_solves >= 5: print("Bo5:   ", current_puzzle.session_best_of_five)
         if current_puzzle.session_solves >= 12: print("Bo12:  ", current_puzzle.session_best_of_twelve)
