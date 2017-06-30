@@ -17,6 +17,9 @@ class Puzzles:
         # default Puzzle used on load
         self.default = Puzzle("default")
 
+    def __getitem__(self, item):
+        return self.list[item]
+
 
 # main class structure used for holding information for each of the different puzzles in use
 class Puzzle:

@@ -8,19 +8,19 @@ import jsonpickle
 
 # region
 # place holder code to reset json file as well as initialize new fields
-from puzzle import Puzzle, Puzzles
-puzzles = Puzzles()
-puzzles.list.append(Puzzle("3x3"))
-puzzles.default = puzzles.list[0]
-f = open('puzzles.json', 'w')
-f.write(jsonpickle.encode(puzzles))
-f.close()
+# from puzzle import Puzzle, Puzzles
+# puzzles = Puzzles()
+# puzzles.list.append(Puzzle("3x3"))
+# puzzles.default = puzzles.list[0]
+# f = open('puzzles.json', 'w')
+# f.write(jsonpickle.encode(puzzles))
+# f.close()
 # endregion
 
 # open stream reader to puzzles json file, generating the puzzles class from said file
-# f = open('puzzles.json', 'r')
-# puzzles = jsonpickle.decode(f.read())
-# f.close()
+f = open('puzzles.json', 'r')
+puzzles = jsonpickle.decode(f.read())
+f.close()
 
 # set the current working puzzle to the default puzzle loaded from the json file
 current_puzzle = puzzles.default
@@ -39,6 +39,7 @@ while quit_loop == 0:
     # place holder UI used to test core functionality; needs replacing
     # TODO: separate UI into it's own module; no UI management done outside this section
     print("Session of", time.strftime("%B %d, %Y", time.localtime()))
+    print(len(current_puzzle.shuffles), "Shuffles loaded.")
     print("-----------------------------------------------------------------")
     print("Puzzle:", current_puzzle.name)
     print("Solves:", current_puzzle.session_solves)
@@ -63,6 +64,8 @@ while quit_loop == 0:
     # place holder used to pause UI refresh
     # TODO: implement separate UI module
     time.sleep(1)
+
+puzzles[0].add_shuffles('puzzles/3x3_shuffles.txt')
 
 # upon exit, populate json file with puzzles class, saving data
 f = open('puzzles.json', 'w')
