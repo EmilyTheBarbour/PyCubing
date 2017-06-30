@@ -1,7 +1,5 @@
-from time import asctime
 from bubblesort import bubble_sort
 from functools import reduce
-from enum import Enum
 import random
 
 # bubblesort is used to sort the list of times in statistical analysis (for example best of 5) so that
@@ -10,10 +8,8 @@ import random
 # by its length
 
 
-class Solve(Enum):
-    TIME = 0
-    SHUFFLE = 1
-    DATE_TIME = 2
+class Solve:
+    TIME, SHUFFLE, DATE_TIME = range(0, 3)
 
 
 # class structure used mainly for organizing all of the objects for json encoding and decoding
@@ -138,5 +134,3 @@ class Puzzle:
             temp.pop(-1)
 
             self.session_best_of_hundred = round(reduce(lambda x, y: x + y, temp) / 98, 2)
-
-
