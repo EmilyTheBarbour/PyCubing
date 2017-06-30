@@ -66,15 +66,21 @@ class Puzzle:
         self.update_statistics()
 
     # used to update statistics; currently only handling session statistics
+    # all parts use a temp list so that a list of only the time component of a solve is generated
     # TODO: implement overall statistics management, only perform one bubble sort for more efficiency
     def update_statistics(self):
-        #
+        # Average of 3 computation
         if self.session_solves >= 3:
             temp = []
             for e in self.overall_solves[-3:]:
                 temp.append(e[0])
             self.session_average_of_three = round(reduce(lambda x, y: x + y, temp) / 3, 2)
 
+        # All of the Best of x computations follow the same format:
+        # generate temp list of last x solves, sort them using a bubble sort, and pop off the lowest and highest time
+        # then take the statistical mean and report
+
+        # Best of 5
         if self.session_solves >= 5:
             temp = []
             for e in self.overall_solves[-5:]:
@@ -85,6 +91,7 @@ class Puzzle:
 
             self.session_best_of_five = round(reduce(lambda x, y: x + y, temp) / 3, 2)
 
+        # Best of 12
         if self.session_solves >= 12:
             temp = []
             for e in self.overall_solves[-12:]:
@@ -94,7 +101,7 @@ class Puzzle:
             temp.pop(-1)
 
             self.session_best_of_twelve = round(reduce(lambda x, y: x + y, temp) / 10, 2)
-
+        # Best of 100
         if self.session_solves >= 100:
             temp = []
             for e in self.overall_solves[-100:]:
