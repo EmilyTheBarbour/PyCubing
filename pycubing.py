@@ -1,6 +1,7 @@
 import time
 import os
 import jsonpickle
+from puzzle import Solve
 
 # time is used to generate date_times for session logging, and time() for timing solves (stop - start)
 # os is intended to be used for clearing the screen, although this functionality is currently nonworking
@@ -33,12 +34,15 @@ quit_loop = 0
 # TODO: implement proper main loop
 while quit_loop == 0:
 
+    current_solve = [0, current_puzzle.generate_shuffle(), time.asctime()]
+
     # Intended to clear the console so that the text is displayed in the same place every time
     os.system('cls')
 
     # place holder UI used to test core functionality; needs replacing
     # TODO: separate UI into it's own module; no UI management done outside this section
     print("Session of", time.strftime("%B %d, %Y", time.localtime()))
+    print(len(current_puzzle.shuffles), "Shuffles loaded.")
     print("-----------------------------------------------------------------")
     print("Puzzle:", current_puzzle.name)
     print("Solves:", current_puzzle.session_solves)
@@ -47,18 +51,21 @@ while quit_loop == 0:
     if current_puzzle.session_solves >= 5  : print("Bo5:   ", current_puzzle.session_best_of_five)
     if current_puzzle.session_solves >= 12 : print("Bo12:  ", current_puzzle.session_best_of_twelve)
     if current_puzzle.session_solves >= 100: print("Bo100: ", current_puzzle.session_best_of_hundred)
-    print("-----------------------------------------------------------------\n")
+    print("-----------------------------------------------------------------")
+    print(current_solve[Solve.SHUFFLE], '\n')
 
     # place holder input validation for timer starting and stopping, as well as exiting when 1 is received
-    # TODO: implement propper input detection
-    if input("press enter to start time. press 1 to end ") == "1": break
+    # TODO: implement proper input detection
+    if input("press enter to start time. press 1 to end ") == "1":
+        break
 
     start = time.time()
     input("press enter to stop time.")
     stop = time.time()
+    current_solve[Solve.TIME] = round(stop - start, 2)
 
     # adds the resulting time and shuffle to the puzzle for handling
-    current_puzzle.add_solve(round(stop - start, 2), "shuffle")
+    current_puzzle.add_solve(current_solve)
 
     # place holder used to pause UI refresh
     # TODO: implement separate UI module
@@ -68,4 +75,3 @@ while quit_loop == 0:
 f = open('puzzles.json', 'w')
 f.write(jsonpickle.encode(puzzles))
 f.close()
-
