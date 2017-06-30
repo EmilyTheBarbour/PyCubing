@@ -8,19 +8,19 @@ import jsonpickle
 
 # region
 # place holder code to reset json file as well as initialize new fields
-# from puzzle import Puzzle, Puzzles
-# puzzles = Puzzles()
-# puzzles.list.append(Puzzle("3x3"))
-# puzzles.default = puzzles.list[0]
-# f = open('puzzles.json', 'w')
-# f.write(jsonpickle.encode(puzzles))
-# f.close()
+from puzzle import Puzzle, Puzzles
+puzzles = Puzzles()
+puzzles.list.append(Puzzle("3x3"))
+puzzles.default = puzzles.list[0]
+f = open('puzzles.json', 'w')
+f.write(jsonpickle.encode(puzzles))
+f.close()
 # endregion
 
 # open stream reader to puzzles json file, generating the puzzles class from said file
-f = open('puzzles.json', 'r')
-puzzles = jsonpickle.decode(f.read())
-f.close()
+# f = open('puzzles.json', 'r')
+# puzzles = jsonpickle.decode(f.read())
+# f.close()
 
 # set the current working puzzle to the default puzzle loaded from the json file
 current_puzzle = puzzles.default

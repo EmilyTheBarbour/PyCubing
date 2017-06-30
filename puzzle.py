@@ -8,6 +8,7 @@ import random
 # reduce is used to implement a lambda function that adds all items of a list together such that it can be divided
 # by its length
 
+
 # class structure used mainly for organizing all of the objects for json encoding and decoding
 class Puzzles:
     def __init__(self):
@@ -15,6 +16,7 @@ class Puzzles:
         self.list = []
         # default Puzzle used on load
         self.default = Puzzle("default")
+
 
 # main class structure used for holding information for each of the different puzzles in use
 class Puzzle:
@@ -44,8 +46,11 @@ class Puzzle:
         self.overall_session_date_and_times = []
 
     # a shuffle is a string containing moves separated by spaces; each shuffle is itself separated by a new line
-    def add_shuffles(self, input_string):
-        self.shuffles.extend(input_string.split('\n'))
+    def add_shuffles(self, file):
+        self.shuffles_file = file
+        f = open(file, 'r')
+        self.shuffles.extend(f.read().split('\n'))
+        f.close()
 
     # returns a random shuffle from the list of shuffles; can be expanded to an algorithm in the future
     def generate_shuffle(self):
