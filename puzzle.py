@@ -101,14 +101,20 @@ class Puzzle:
 
         # determine if session best has been beaten and add that to solve_results
         if solve[Solve.TIME] < self.session_best:
-            solve_results.append([SolveResults.NEW_SESSION_BEST,
-                                  round(self.session_best - solve[Solve.TIME], 2)])
+            if self.session_best != 9999:
+                solve_results.append([SolveResults.NEW_SESSION_BEST,
+                                      round(self.session_best - solve[Solve.TIME], 2)])
+            else:
+                solve_results.append([SolveResults.NEW_SESSION_BEST, 0])
             self.session_best = solve[Solve.TIME]
 
         # determine if overall best has been beaten and add that to solve_results
         if solve[Solve.TIME] < self.overall_best:
-            solve_results.append([SolveResults.NEW_OVERALL_BEST,
-                                  round(self.overall_best - solve[Solve.TIME], 2)])
+            if self.overall_best != 9999:
+                solve_results.append([SolveResults.NEW_OVERALL_BEST,
+                                      round(self.overall_best - solve[Solve.TIME], 2)])
+            else:
+                solve_results.append([SolveResults.NEW_OVERALL_BEST, 0])
             self.overall_best = solve[Solve.TIME]
 
         # TODO: fix only doing 2 bubble sorts as this does not represent proper statistics, make each check do it

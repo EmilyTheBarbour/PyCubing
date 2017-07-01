@@ -70,14 +70,15 @@ while True:
     action = input()
     if action == "":
         start = time.time()
+        UI.clear()
         input("press enter to stop time.")
         stop = time.time()
         current_solve[Solve.TIME] = round(stop - start, 2)
 
         # adds the resulting solve to the puzzle, getting all of the different statistics changed in return
         solve_results = current_puzzle.add_solve(current_solve)
+
         UI.display_solve_results(current_solve, solve_results)
-        input()
 
     elif action == "1":
         Options.show(current_puzzle, puzzles)
