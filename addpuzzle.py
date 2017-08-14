@@ -18,4 +18,6 @@ for i, e in enumerate(puzzles):
 f = open('puzzles/puzzles.json', 'w')
 f.write(jsonpickle.encode(puzzles))
 f.close()
+//test
+
 
